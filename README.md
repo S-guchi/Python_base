@@ -1,2 +1,272 @@
 # Python_base
 Python構文のメモ
+
+## 標準入力
+```
+input = input("input")
+```
+
+## formt関数
+```
+print("私の名前は={}".format("name"))
+→name
+print("私の名前は={name}".format(name="name"))
+→name
+
+name=原口
+print(f"私の名前は={name}")
+→原口
+```
+
+## if 
+```
+AGE = 15
+
+if AGE >= 20:
+    print('aaaa')
+else:
+    print('bbbb')
+```
+
+## 演算
+```
+// 割り算、切り捨て
+% 剰余
+** べきじょう
+<< >>シフト演算
+& | 論理積、論理和
+```
+
+## 2、8、16進数
+``` python
+age = 0b111 # 2進数(7)
+
+age = 0o11 # 8進数(9)
+
+age = 0x11 # 16進数(17)
+#文字列へ変換
+print(bin(15))
+print(oct(15))
+print(hex(15))
+```
+
+## 文字列型について
+```python
+fruit = 'apple'
+
+print(fruit)  # apple
+print(type(fruit))  # apple
+print(fruit * 10)  # appleappleappleappleappleappleappleappleappleapple
+
+fruit2 = '''apple
+banana
+grape
+'''
+print(fruit2)  # 改行付きで出力できる
+
+print(fruit[3])  # 前から何番目 l
+print(fruit[-1])  # 後ろから何番目　e
+
+```
+### encode,decode => bytes[]
+```python
+fruit = 'apple'
+byte_fruits = fruit.encode('utf-8')
+print(byte_fruits)  # b'apple'
+print(type(byte_fruits))  # <class 'bytes'>
+
+str_fruits = byte_fruits.decode('utf-8')
+print(str_fruits)  # apple
+print(type(str_fruits))  # <class 'str'>
+```
+
+
+### count (文字の個数を調べる)
+```python
+msg = 'abcdefgABCabc'
+
+print(msg.count('ABC')) #1
+print(msg.count('abc')) #2
+
+```
+
+### startswith,endwidth(開始文字列、終了文字列が一致するか)
+```python
+msg = 'abcdefgABCabc'
+
+print(msg.startswith('ABC'))  # False
+print(msg.startswith('abc'))  # True
+print(msg.endswith('abc'))  # True
+print(msg.endswith('abce'))  # False
+``` 
+
+### strip(両端), rstrip(右端), lstrip(左端)　削除する
+```python
+msg = ' ABC '
+
+print
+print(msg.strip()) #ABC
+
+msg = 'ABCDEFABC'
+
+print(msg.strip('A')) #BCDABCDB
+print(msg.strip('CBA')) #DEF
+print(msg.rstrip('CBA')) #ABCDEF
+print(msg.lstrip('CBA')) #DEFABC
+```
+
+### upper(大文字)　,lower(小文字),swapcase(大文字小文字入れ替え), replace(置換), capitalize(最初だけ大文字に変換)
+```python
+msg = 'abcABC'
+
+msg_u = msg.upper()  # 大文字
+msg_l = msg.lower()  # 小文字
+msg_s = msg.swapcase()  # 大文字小文字入れ替え
+
+print(msg_u, msg_l, msg_s)  # ABCABC abcabc ABCabc
+msg = 'ABCDEABCABC'
+
+msg_r = msg.replace('ABC','FFF') 
+
+msg_r1 = msg.replace('ABC','FFF',1) #前から1個目まで変換
+msg_r1_1 = msg.replace('ABC','FFF',2) #前から２個目まで変換
+msg_r2 = msg.replace('ABC','FFF',-1) #全部変換
+
+print(msg_r,msg_r1,msg_r1_1,msg_r2) #FFFDEFFFFFF FFFDEABCABC FFFDEFFFABC FFFDEFFFFFF
+
+msg = 'hellow world'
+
+print(msg.capitalize()) #Hellow world
+```
+
+### 文字列の一部取り出し,islower,isupper
+```python
+msg = 'hello, my name is taro'
+
+print(msg[:5]) #最初から5まで（hello）
+print(msg[6:]) #6から最後まで（ my name is taro）
+print(msg[1:6]) #要素1から6まで（ello,）
+print(msg[1:10:2]) #1から10まで、２個飛ばし（el,m ）
+
+msg = 'apple'
+print(msg.islower()) #True
+print(msg.isupper()) #False
+```
+
+
+### find, index, rfind, rindex
+```python
+msg = 'ABCDEABC'
+
+print(msg.find('ABC'))#左端から見つかった場所の要素が表示される(0)
+print(msg.rfind('ABC'))#右端から見つかった場所の要素が表示される(5)
+print(msg.index('ABC'))#左端から見つかった場所の要素が表示される(0)
+print(msg.rindex('ABC'))#右端から見つかった場所の要素が表示される(5)
+
+
+print(msg.find('ABCE'))#見つからなかったら-1
+print(msg.index('ABCE'))#見つからなかったらエラー(ValueError: substring not found)
+```
+
+### append,extend,insert,clear
+```python
+list_a.append('apple')  # 要素の追加はappend
+print(list_a)  # [10, 2, 3, 4, 'apple']
+list_a.append(['apple', 'banana'])
+print(list_a)  # [10, 2, 3, 4, 'apple', ['apple', 'banana']]
+
+list_a.extend(['suika', 'ichigo'])  # extendではリストを一次元配列としてつなげることができる
+print(list_a)  # [10, 2, 3, 4, 'apple', ['apple', 'banana'], 'suika', 'ichigo']
+
+list_a.insert(1, 'grape')  # indexを指定して要素を追加する
+print(list_a)  # [10, 2, 3, 4, 'apple', ['apple', 'banana'], 'suika', 'ichigo']
+list_a.insert(4, 'orange')  # indexを指定して要素を追加する
+# [10, 'grape', 2, 3, 'orange', 4, 'apple', ['apple', 'banana'], 'suika', 'ichigo']
+print(list_a)
+
+list_a.clear()  # listを空にする
+print(list_a)　#[]
+
+```
+### remove,pop,count,index
+
+```python
+# removeは指定した値を左から探していき見つかったら削除するメソッド
+list_a = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5]
+list_a.remove(3)  # 左から一番初めに出てきた3を削除する
+print(list_a)  # [0, 0, 1, 1, 2, 2, 3, 4, 4, 5, 5]
+
+list_b = ['apple', 'banana', 'kamaboko']
+list_b.remove('kamaboko')  # 左から一番初めに出てきたkamabokoを削除する
+print(list_b)  # ['apple', 'banana']
+
+# popは一番最後の値を取り出す
+value = list_b.pop()
+print(list_b, value)
+
+# countはlistの中に指定した値が何個あるかを返す
+print(list_a.count(0))  # 2
+
+# indexは左から探索して値が見つかった要素番号を返す,rindexとかはない
+print(list_a.index(2))  # 4
+# print(list_a.index(100)) #ValueError: 100 is not in list
+```
+
+### copy,sort,reverse
+```python
+# copyはリストをコピーできる
+# 単純なイコールでのコピーは参照渡しになる為、cを書き換えたつもりがaも変わってしまう
+list_c = list_a
+print(list_c)  # [0, 0, 1, 1, 2, 2, 3, 4, 4, 5, 5]
+list_c[0] = "apple"
+print(list_a)  # ['apple', 0, 1, 1, 2, 2, 3, 4, 4, 5, 5]
+print(list_c)  # ['apple', 0, 1, 1, 2, 2, 3, 4, 4, 5, 5]
+
+# なので配列をコピーするときはcopyメソッドを使う
+list_c = list_a.copy()
+print(list_c)  # ['apple', 0, 1, 1, 2, 2, 3, 4, 4, 5, 5]
+list_c[0] = "banana"
+print(list_a)  # ['apple', 0, 1, 1, 2, 2, 3, 4, 4, 5, 5]
+print(list_c)  # ['banana', 0, 1, 1, 2, 2, 3, 4, 4, 5, 5]
+
+# sort,reverse
+list_a = ['banana', 'apple', 'lemon']
+list_a.sort()
+print(list_a)  # ['apple', 'banana', 'lemon']
+list_a.reverse()
+print(list_a)  # ['lemon', 'banana', 'apple']
+
+#sorted
+list_a = sorted(list_a)
+print(list_a)  # ['apple', 'banana', 'lemon']
+
+```
+
+### Dictionary(辞書型)
+```python
+car = {'brand': 'Toyota', 'model': 'Prius', 'year': '2015'}
+
+# []で指定する方法、存在しない場合はKeyErrorが返る
+print(car['brand'])  # Toyota
+# print(car['aaaa'])  # KeyError: 'aaaa'
+
+# .getで指定する方法、存在しない場合はNone、第二引数に値が設定してあったらその値が返る
+print(car.get('brand'))  # Toyota
+print(car.get('aaa'))  # None
+print(car.get('aaa', '存在しない値だよ'))  # 存在しない値だよ
+
+print(car.keys())  # keyの一覧を表示する、dict_keys(['brand', 'model', 'year'])
+
+print(car.values())  # valueの一覧を表示する、dict_values(['Toyota', 'Prius', '2015'])
+
+# keyとvalueのセット、全部が表示される、dict_items([('brand', 'Toyota'), ('model', 'Prius'), ('year', '2015')])
+print(car.items())
+
+for k, v in car.items():
+    print(f'key = {k} value = {v}')
+
+# carの中に'brand'のキーがあればTrue
+if 'brand' in car:
+    print('carのブランドは{}'.format(car.get('brand')))
+```
+
