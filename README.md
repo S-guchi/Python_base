@@ -392,3 +392,42 @@ print(set_a) #set()
 * set_a.issubset(set_b) ... set_aの要素が全てset_bに含まれている場合は、set_aはset_bのサブセットということでTrueを返す。
 * set_b.issuperset(set_a) ... set_aの要素が全てset_bに含まれている場合は、set_bはset_aのスーパーセットということでTrueを返す。
 * set_b.isdisjoint(set_c) ... set_bの要素とset_cの要素が1つも被っていない場合Trueを返す
+
+```python
+s = {'a','b','c','d'}
+t = {'c','d','e','f'}
+
+#和集合
+u = s | t
+#u = s.union(t)
+#s |= t #そのまま合体させることもできる
+print(u) # {'a','b','c','d','e','f'}(セットだから順不同)
+
+#積集合
+u = s & t 
+# u = s.intersection(t)
+print(u) # {'c','d'}
+
+#差集合
+u = s - t 
+# u = s.deffernce(t)
+print(u) # {'a','b'}
+
+#どちらか一方に含まれているけど両方に含まれていない要素
+u = s ^ t
+# s.symmetric_defference(t)
+print(u) # {'a','b','e','f'}
+
+
+#boolean系
+s = {'apple','banana'}
+t = {'apple','banana','lemon'}
+u = {'cherry'}
+
+print(s.issubset(t)) # True
+print(t.issuperset(s)) # True
+print(s.isdisjoin(t)) # False
+print(s.isdisjoin(u)) # True
+```
+
+
