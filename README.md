@@ -302,7 +302,7 @@ del car  # 変数を削除
 # print(car) #NameError: name 'car' is not defined
 ```
 
-#### タプル
+### タプル
 + タプルとはリストと似ていて値を複数入れることができる、値を変更削除できない
 + タプルのメリット
   - リストよりタプルの方がアクセスするスピードが速い
@@ -332,3 +332,63 @@ pos = (135, 35)
 countries = {pos: 'Japan'}
 
 print(countries.get((135, 35)))  # Japan
+
+```
+### セット{}
+リスト[]、タプル()と似たような複数の値を入れることが出来る
+
+* 同じ値を持つことが出来ない
+* 順序が保持されていない（重要）
+* ユニオン、インターセクションなどの集合処理を高速で行える
+* リストは入れられない(リストはハッシュ化できないため)
+
+```python
+set_a = {'a','b','c','a'} 
+
+print(set_a) #{'a','b','c'} aは宣言で入れていても入らない
+
+#セットの要素確認
+
+#「'文字列' in セット」で確認できる
+print('e' in set_a) # False
+print('a' in set_a) # True
+print('a' not in set_a) # False
+
+#セットの長さの確認
+print(len(set_a)) #4
+
+
+#要素の追加
+set_a.add('A')
+print(set_a) # {'a','A','b','c'} 
+
+#要素の削除
+set_a.remove('a')
+#set_a.remove('o') #存在しない要素を指定するとキーエラーとなる
+print(set_a) # {'A','b','c'} 
+
+#discard = 廃棄
+set.discard('A')
+set.discard('B') #discardは存在しない要素を指定してもエラーにはならない
+print(set_a) # {'b','c'} 
+
+val = set_a.pop()
+print(val,set_a) # 'b'  {'c'} #セットのpopはランダムで値が取り出される。使いどころとしてはくじ引きプログラムとか？
+
+#セットのクリア
+set_a.clear()
+print(set_a) #set()
+
+```
+
+#### セットのメソッド
+使うときは基本的に記号を使ったほうが見やすいかも？
+
+* union(|) ...和集合[合併]
+* intersection(&) ...積集合[共通部分]
+* defference(-) ...差集合[違い]
+* symmetric_defference(^) ...どちらか一方にある要素の集合
+
+* set_a.issubset(set_b) ... set_aの要素が全てset_bに含まれている場合は、set_aはset_bのサブセットということでTrueを返す。
+* set_b.issuperset(set_a) ... set_aの要素が全てset_bに含まれている場合は、set_bはset_aのスーパーセットということでTrueを返す。
+* set_b.isdisjoint(set_c) ... set_bの要素とset_cの要素が1つも被っていない場合Trueを返す
