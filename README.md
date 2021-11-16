@@ -443,3 +443,36 @@ if all((True,True,True)):
 if any((True,False,True))
     print('1つでもTrueの場合')
 ```
+### for
+
+* アンダースコアだけの変数は慣習的に使わない値を格納するのにつかわれる
+* ループでよく使われるのはrange関数
+
+```python
+for i in range(10):
+    print(i)
+for i in range(2,20,3): #2から20まで3飛ばしで
+    print(i)
+
+for _ in range(100)
+    print'100回ループする')
+
+sample = ['A','B','C']
+#enumerate[列挙する](valueと同時に要素番号も取得)
+for index,value in enumerate(sample):
+    print(index) #123
+    print(value) #ABC
+
+#zip(2つのリストの中身を同時に取得)
+for a,b in zip(list1,list2):
+    print(a,b)
+
+#while
+count=0
+while count < 10:
+    print(count)
+    count += 1
+    
+```
+
+
