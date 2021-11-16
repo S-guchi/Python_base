@@ -270,3 +270,65 @@ if 'brand' in car:
     print('carのブランドは{}'.format(car.get('brand')))
 ```
 
+##### 辞書型のメソッド
+```python
+
+tmp_car = {'country': 'japan', 'prefecture': 'Aichi', 'model': 'カローラ'}
+
+car.update(tmp_car)  # 追加、更新
+
+print(car)
+
+car['city'] = 'toyota-si'  # これでも追加、更新できる
+print(car)
+
+
+value = car.popitem()  # 最後に追加した値を取り出せる
+# {'brand': 'Toyota', 'model': 'カローラ', 'year': 2015, 'country': 'japan', 'prefecture': 'Aichi'}
+print(car)
+print(value)  # タプル型で取り出される ('city', 'toyota-si')
+
+value = car.pop('model')  # キーを指定して値を取り出し
+
+# {'brand': 'Toyota', 'year': 2015, 'country': 'japan', 'prefecture': 'Aichi'}
+print(car)
+print(value)  # valueだけ取り出される(カローラ)
+
+car.clear()  # 変数を初期化
+
+print(car)
+
+del car  # 変数を削除
+# print(car) #NameError: name 'car' is not defined
+```
+
+#### タプル
++ タプルとはリストと似ていて値を複数入れることができる、値を変更削除できない
++ タプルのメリット
+  - リストよりタプルの方がアクセスするスピードが速い
+  - ハッシュ化して辞書型のキーとして利用できる
+  - 値を変更したくない場合は保証ができる
+```python
+fruit = ('apple', 'banana', 'lemon')
+
+print(type(fruit))
+print(fruit[0])
+
+fruit = fruit + ('grape',)  # タプルに要素を追加したい場合は再代入することによって追加できる
+
+print(fruit)  # ('apple', 'banana', 'lemon', 'grape')
+
+# リストをタプルに変換
+list_fruit = ['apple', 'banana']
+fruit = tuple(list_fruit)
+
+print(fruit)  # ('apple', 'banana')
+print(fruit.count('apple'))  # カウントする　→1
+print(fruit.index('apple'))  # 検索する　→0(番目)
+
+
+# 辞書型のキーにタプルを使用する方法（よくある方法）
+pos = (135, 35)
+countries = {pos: 'Japan'}
+
+print(countries.get((135, 35)))  # Japan
