@@ -430,4 +430,16 @@ print(s.isdisjoin(t)) # False
 print(s.isdisjoin(u)) # True
 ```
 
+### if 
 
+#### all,any
+* all(タプルまたはリスト)、any(タプルまたはリスト)
+* allを使用すると条件をANDでつなげなくてよくなるから可読性が良くなる。
+* anyを使用すると、条件をOrでつなげなくてよくなる
+```python 
+if all((True,True,True)):
+    print('全ての条件がTrueの場合')
+
+if any((True,False,True))
+    print('1つでもTrueの場合')
+```
