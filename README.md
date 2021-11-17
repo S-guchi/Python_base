@@ -472,6 +472,20 @@ count=0
 while count < 10:
     print(count)
     count += 1
+
+
+#elseを使うと処理終了時に処理を実行できる
+for i in range(10):
+    print(i)
+else:
+    print("終了しました")
+
+#ただ、breakで抜けた場合はelseは実行されない
+for i in range(10):
+    print(i)
+    break
+else:
+    print("終了しました")
     
 ```
 
