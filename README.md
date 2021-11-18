@@ -503,3 +503,8 @@ while(n := n+1) < 10:
     print(n)
 
 ```
+
+### メソッド一覧取得
+```python
+print(dir(list))
+```
