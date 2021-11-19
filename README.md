@@ -538,3 +538,22 @@ finally:
     print('例外が発生してもしなくても実行される')
 
 ```
+#### raiseと自作例外
+```python
+class MyException(Exception):
+    pass
+
+
+def devide(a, b):
+    if b == 0:
+        # raise ZeroDivisionError('0では割り切れません')
+        raise MyException('0では割り切れません')  # 自作例外
+    else:
+        return a / b
+
+try:
+    c = devide(10, 0)
+except Exception as e:
+    print(e, type(e))
+
+```
