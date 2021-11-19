@@ -508,3 +508,33 @@ while(n := n+1) < 10:
 ```python
 print(dir(list))
 ```
+
+### 例外処理
+```python
+from traceback import print_exc
+import traceback
+
+try:
+    b = [10, 20, 30]
+    a = b[4]
+    a = 10 / 0
+except ZeroDivisionError as e:
+
+    traceback.print_exc()  # 何行目でエラーになったか表示(詳細を表示)
+
+    # eにはエラー内容が入っている(division by zero:<class 'ZeroDivisionError'>)
+    print(f'{e}:{type(e)}')
+
+    pass  # 何もしない行
+except IndexError as e:
+    traceback.print_exc()
+
+except Exception as e: #全ての例外をキャッチ
+    print(type(e))
+
+else: 
+    print('例外が発生しない場合に実行される') #elseで例外が発生した場合はキャッチされない
+finally:
+    print('例外が発生してもしなくても実行される')
+
+```
