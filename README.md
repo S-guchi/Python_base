@@ -557,3 +557,78 @@ except Exception as e:
     print(e, type(e))
 
 ```
+### 関数
+```python
+def print_hello():
+    print('hello world')
+
+
+print_hello()
+
+# コロンの後に型を指定することもできる、
+# ただし厳密に指定できるわけじゃなくてstrとしていてもint渡せる（IDEのヒントにこの関数はこの引数だよ〜って出せる）
+
+
+def num_max(a: int, b: str):
+    print('a = {},b = {}'.format(a, b))
+    if a > b:
+        return a
+    else:
+        return b
+
+
+print(num_max(10, 20))
+print(num_max(b=100, a=20))  # 直接関数の変数を指定することもできる
+```
+### デフォルト値、可変調引数、複数の返り値
+```python
+# デフォルト値
+def sample(arg1, arg2=100):
+    print(arg1, arg2)
+
+
+sample(200, 300)
+sample(200)  # 第二引数がなくてもデフォルト値がarg2には入る(200 100)
+
+# 可変調引数
+# 同じ可変調引数は複数は使えない
+# ただ、タプル型と辞書型の可変調引数は混在OK
+# 可変調引数は引数の一番最後に設定する
+
+
+def spam(arg1, *arg2):  # 引数の前を*とすることで可変調のタプルとして複数の引数を受け取れるようになる
+    # arg1 = 1,arg2 = (2, 3, 4, 5)
+    print("arg1 = {},arg2 = {}".format(arg1, arg2))
+    print(type(arg2))  # <class 'tuple'>
+
+
+spam(1, 2, 3, 4, 5)
+
+
+def spam2(arg1, **arg2):  # 引数の前を**とすることで可変調の辞書として複数の引数を受け取れるようになる
+    # arg1 = 1,arg2 = {'name': 'taro', 'age': 20}
+    print("arg1 = {},arg2 = {}".format(arg1, arg2))
+    print(type(arg2))  # <class 'dict'>
+
+
+spam2(1, name='taro', age=20)
+
+
+def spam2(arg1, *arg2, **arg3):  # 可変調タプルと可変長辞書を宣言するパターン
+    print("arg1 = {},arg2 = {},arg3 = {}".format(arg1, arg2, arg3))
+
+
+# arg1 = 1,arg2 = (2, 3, 4, 5),arg3 = {'name': 'taro', 'age': 20}
+spam2(1, 2, 3, 4, 5, name='taro', age=20)
+
+# 複数の返り値
+
+
+def sample_2():
+    return 1, 2
+
+
+a, b = sample_2()#カンマで区切って渡すと複数返せる。すごい
+
+print(a,b)
+```
