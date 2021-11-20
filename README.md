@@ -580,7 +580,7 @@ def num_max(a: int, b: str):
 print(num_max(10, 20))
 print(num_max(b=100, a=20))  # 直接関数の変数を指定することもできる
 ```
-### デフォルト値、可変調引数、複数の返り値
+#### デフォルト値、可変調引数、複数の返り値
 ```python
 # デフォルト値
 def sample(arg1, arg2=100):
