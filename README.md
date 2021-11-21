@@ -645,3 +645,28 @@ printAnimal()
 
 print('関数外animal = {}, id = {}'.format(animal, id(animal)))
 ```
+# inner関数 ノンローカル変数
+```python
+# inner関数の用途
+# 関数の中に関数の外からアクセスできないような関数を作成する
+# 関数の中で同じ処理が何度も発生する場合などに使用する
+# デコレータ関数を作成する
+
+def outer():
+    outer_value = '外側の変数'
+
+    def inner():
+        nonlocal outer_value  # ノンローカルで変数を宣言すると外側の値を参照するようになる,逆に宣言しないと新しい変数として扱われる
+        outer_value = '内側の変数'
+        # inner:outer_value = 内側の変数,id = 140404362253200
+        print('inner:outer_value = {},id = {}'.format(
+            outer_value, id(outer_value)))
+    inner()
+    # outer:outer_value = 内側の変数,id = 140404362253200
+    print('outer:outer_value = {},id = {}'.format(outer_value, id(outer_value)))
+
+
+# inner() 関数の外側から関数の中にある関数は呼べない
+outer()
+
+```
