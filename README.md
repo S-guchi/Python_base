@@ -645,7 +645,7 @@ printAnimal()
 
 print('関数外animal = {}, id = {}'.format(animal, id(animal)))
 ```
-# inner関数 ノンローカル変数
+### inner関数 ノンローカル変数
 ```python
 # inner関数の用途
 # 関数の中に関数の外からアクセスできないような関数を作成する
@@ -669,4 +669,51 @@ def outer():
 # inner() 関数の外側から関数の中にある関数は呼べない
 outer()
 
+```
+### ジェネレーター関数
+```python
+
+from typing import ValuesView
+
+
+def generator(max):
+    print('ジェネレーター作成')
+    for n in range(max):
+        yield n
+        print('yield実行')
+
+
+gen = generator(10)
+# n = next(gen)  # yieldの値が返る
+# print('n = {}'.format(n))  # n = 0
+# n = next(gen)
+# print('n = {}'.format(n))  # n = 1
+# n = next(gen)
+# print('n = {}'.format(n))  # n = 2
+
+# ループでもかける,ループで書く場合はnextしなくても値が取れる
+for x in gen:
+    print('x = {}'.format(x))
+
+
+# send,throw,close
+def generator2(max):
+    print('ジェネレーター作成')
+    for n in range(max):
+        x = yield n
+        print('x = {}'.format(x))
+        print('yield実行')
+
+
+gen = generator2(10)
+
+next(gen)  # yieldまで進む　（ジェネレーター作成）
+gen.send(100)  # 値を送り込んで次のyieldまで進む(x = 100)
+
+# throwを使用すると無理矢理例外処理を出力する(ValueError: Invalid Value)
+# gen.throw(ValueError('Invalid Value'))
+
+gen.close()  # ジェネレータをクローズさせる
+
+next(gen)  # StopIteration
 ```
