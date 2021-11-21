@@ -632,3 +632,16 @@ a, b = sample_2()#カンマで区切って渡すと複数返せる。すごい
 
 print(a,b)
 ```
+### グローバル変数
+```python
+def printAnimal():
+    global animal
+    animal = 'cat'
+    print('関数内animal = {}, id = {}'.format(animal, id(animal)))
+
+
+animal = 'Dog'
+printAnimal()
+
+print('関数外animal = {}, id = {}'.format(animal, id(animal)))
+```
