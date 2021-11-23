@@ -792,3 +792,44 @@ var = print_hello(print_world)
 var()
 
 ```
+### ifを一行で書く方法
+```python
+y = 10
+x = 0 if y > 0 else 1
+print(x) #0
+
+```
+
+# lambda式
+```python
+lambda_a = lambda x: x * x #引数x 返り値x*y
+
+print(lambda_a(10)) #100
+
+lambda_b = lambda x,y,z=5: x * y * z #引数x 返り値x*y
+
+print(lambda_b(10,5)) #250
+
+# 条件式付きlambda
+lambda_c = lambda x,y:y if x < y else x 
+print(lambda_c(6,4)) #6
+```
+lambda式をvscodeで書くと保存の際にdef式に修正されてしまう  
+なぜなのか調べたら現在lambda式を変数に代入するやり方は非推奨となっているからみたい　　
+https://pep8-ja.readthedocs.io/ja/latest/#id41　　
+
+以下、def式に修正されたlambda  
+```python
+def lambda_a(x): return x * x  # 引数x 返り値x*y
+
+print(lambda_a(10))  # 100
+
+def lambda_b(x, y, z=5): return x * y * z  # 引数x 返り値x*y
+print(lambda_b(10, 5))  # 250
+
+# 条件式付きlambda
+
+def lambda_c(x, y): return y if x < y else x
+print(lambda_c(6, 4))  # 6
+```
+
