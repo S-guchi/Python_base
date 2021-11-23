@@ -833,3 +833,18 @@ def lambda_c(x, y): return y if x < y else x
 print(lambda_c(6, 4))  # 6
 ```
 
+### 再帰
+```python
+# 再帰は基本的に使わない
+# 読みづらいのと無限ループしてしまう可能性があるため
+
+def sample(a):
+    if a < 0:
+        return
+    else:
+        print(a)
+        sample(a-1)
+
+
+sample(10)
+```
