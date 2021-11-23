@@ -753,3 +753,42 @@ print(next(gen))
 print(next(gen))
 print(next(gen))
 ```
+
+### 高階関数
+関数を引数にしたり返り値にする関数を高階関数という
+
+```python
+def print_hello():
+    print('hello')
+
+
+def print_goodbye():
+    print('goodbye')
+
+
+var = ['AA', 'BB', print_hello, print_goodbye]
+
+var[2]()  # hello
+var[3]()  # goodbye
+
+
+def print_world(msg):
+    print('{} world'.format(msg))
+
+
+def print_konnichiwa():
+    print('こんにちは')
+
+
+def print_hello(func):
+    func('hello')
+    return print_konnichiwa
+
+
+var = print_hello(print_world)
+
+# hello world
+# こんにちは
+var()
+
+```
