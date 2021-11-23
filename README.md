@@ -848,3 +848,31 @@ def sample(a):
 
 sample(10)
 ```
+### リスト内包表記
+```python
+# リストをappendなどを使わず一行で作成できる
+# 可読性が良くなる
+
+list_a = (1, 2, 3, 'a', 4, 'b')
+
+list_b = [x*2 for x in list_a]
+
+print(list_b)  # [2, 4, 6, 'aa', 8, 'bb']
+
+list_c = [x*2 for x in list_a if type(x) == int]  # 条件式で中身を評価することもできる
+
+print(list_c)  # [2, 4, 6, 8]
+
+list_d = [x for x in range(100) if x % 7 == 0]  # 7の倍数だけ取り出す
+print(list_d)  # [0, 7, 14, 21, 28, 35, 42, 49, 56, 63, 70, 77, 84, 91, 98]
+
+dict_a = {
+    'a': 'Apple',
+    'b': 'Banana'
+}
+
+list_e = [dict_a.get(x) for x in list_a if type(x) == str]
+
+print(list_e)  # ['Apple', 'Banana']
+
+```
