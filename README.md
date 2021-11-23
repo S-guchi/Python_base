@@ -721,3 +721,35 @@ gen.close()  # ジェネレータをクローズさせる
 
 next(gen)  # StopIteration
 ```
+### サブジェネレータ
+ジェネレータからジェネレータを呼び出すことができる
+この時、呼び出し元がジェネレータ、呼び出し先がサブジェネレータとなる
+yield from と記述しジェネレータからサブジェネレータを呼び出す
++ 呼び出し先のサブジェネレータからさらに別のジェネレータを呼び出すこともできる
++ サブジェネレータにreturnを追加すると呼び出し元に値を返せる
++ サブジェネレータでyieldを実行すると一番最初の呼び出し元に値を返す
+```python
+
+def sub_sub_generator():
+    yield "３Sub Subのyield"
+    return "Sub sub のreturn"
+
+def sub_generator():
+    yield "２Subのyield"
+    res = yield from sub_sub_generator()
+    print("４sub res = {}".format(res))
+
+def generator():
+    yield "１generatorのyield"
+    res = yield from sub_generator()
+    print('５gen res = {}'.format(res))
+    return 'generatorのreturn'
+
+gen = generator()
+
+print(next(gen))
+print(next(gen))
+print(next(gen))
+print(next(gen))
+print(next(gen))
+```
