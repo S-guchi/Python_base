@@ -800,7 +800,7 @@ print(x) #0
 
 ```
 
-# lambda式
+### lambda式
 ```python
 lambda_a = lambda x: x * x #引数x 返り値x*y
 
