@@ -876,3 +876,34 @@ list_e = [dict_a.get(x) for x in list_a if type(x) == str]
 print(list_e)  # ['Apple', 'Banana']
 
 ```
+
+### デコレータ関数
+* デコレータは関数を引数にとって引数にとった関数を実行時に変更する
+* デコレータは関数の間である処理を共通に利用したい場合に使われます
+* 関数の前に@マークをつけてをデコレータ関数名を書くと使える
+* wrapperの中のfuncが[func_a]だったり[func_b]になる
+```python
+def my_decorator(func):
+    def wrapper(*args, **kwargs):
+        print('*' * 100)
+        func(*args, **kwargs)
+        print('*' * 100)
+    return wrapper
+
+
+@my_decorator
+def func_a(*args, **kwargs):
+    print('func_aを実行')
+    print(args)
+
+
+@my_decorator
+def func_b(*args, **kwargs):
+    print('func_bを実行')
+    print(args)
+
+
+func_a(1, 2, 3)
+func_b(1, 2, 3, 4)
+
+```
