@@ -907,3 +907,52 @@ func_a(1, 2, 3)
 func_b(1, 2, 3, 4)
 
 ```
+### map関数
+* リスト、辞書などのループ可能なクラス変数を第２引数で入力として受け取り
+* 実行時に第一引数の関数に代入した値を出力する
+
+
+```python
+
+list_a = [1, 2, 3, 4, 5]
+
+map_a = map(lambda x: x*2, list_a)
+
+for x in map_a:
+    print(x)
+
+man = {
+    'name': 'Ichiro',
+    'age': '18',
+    'country': 'Japan',
+}
+
+map_man = map(lambda x: x + ',' + man.get(x), man)
+
+for x in map_man:
+    print(x)
+# 2
+# 4
+# 6
+# 8
+# 10
+
+def calc(x, y, z):
+    if z == 'add':
+        return x + y
+    elif z == 'minus':
+        return x - y
+# name,Ichiro
+# age,18
+# country,Japan
+
+map_sample = map(calc, range(5), [3, 3, 3, 3, 3], ['add', 'minus', 'add', 'minus', 'add'])
+
+for x in map_sample:
+    print(x)
+# 3
+# -2
+# 5
+# 0
+# 7
+```
