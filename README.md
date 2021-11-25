@@ -956,3 +956,81 @@ for x in map_sample:
 # 0
 # 7
 ```
+### クラス
+```python
+class Car:
+    """車クラス"""  # ドキュメンテーション文字列
+    country = 'Japan'
+    year = 2019
+    name = 'Prius'
+
+    def print_name(self):
+        print('print_name実行')
+        print(self.name)
+
+
+my_car = Car()  # インスタンス化
+print(my_car.year)
+my_car.print_name()
+list_a = ['apple', 'banana', Car]
+second_car = list_a[2]()
+second_car.print_name()
+
+list_b = ['apple', 'banana', Car()]
+
+list_b[2].print_name()
+
+help(Car)  # ドキュメンテーション文字列が見れる(qで閉じる)
+
+```
+
+### インスタンス変数、クラス変数
+#### クラス変数とはオブジェクト同士で共有可能な変数
+クラスメソッドの内部ではなく、クラスの直下に記載する  
+クラス変数にアクセスする方法は、以下の二つ
+- クラス名.クラス変数名
+- インスタンス名.__class__.クラス変数名
+
+####　インスタンス変数とはクラス変数とは逆に、インスタンスごとにのみ利用できる変数
+クラスメソッド内部に記載する
+- アクセス方法は、インスタンス名.変数
+```python
+class SampleA():
+    class_val = 'class val'  # クラス変数
+
+    def set_val(self):
+        self.instance_val = 'instance val'  # インスタンス変数
+
+    def print_val(self):
+        print('クラス変数 = {}'.format(self.class_val))
+        print('インスタンス変数 = {}'.format(self.instance_val))
+
+
+instance_a = SampleA()  # インスタンス化
+
+
+instance_a.set_val()
+
+print(instance_a.instance_val)  # instance val
+# クラス変数 = class val
+# インスタンス変数 = instance val
+instance_a.print_val()
+
+print(SampleA.class_val)  # class val
+print(instance_a.__class__.class_val)  # class val
+
+instance_b = SampleA()  # インスタンス化
+
+instance_b.set_val()  # class val
+# クラス変数 = class val
+# インスタンス変数 = instance val
+instance_b.print_val()
+
+# クラス変数を変更した場合は全部書き換わる（クラス変数は同じメモリを参照している）
+instance_a.__class__.class_val = 'class val 2'
+print(instance_b.__class__.class_val)  # class val 2
+
+# idで一応参照する
+print(id(instance_a.__class__.class_val))  # 140216322939696
+print(id(instance_b.__class__.class_val))  # 140216322939696
+```
