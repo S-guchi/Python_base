@@ -1071,7 +1071,7 @@ var_1.print_name()
 
 del var_1
 ```
-# インスタンスメソッド、クラスメソッド、スタティックメソッド
+### インスタンスメソッド、クラスメソッド、スタティックメソッド
 ```python
 class Human:
     class_name = 'Human'  # クラス変数
