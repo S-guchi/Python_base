@@ -1071,3 +1071,38 @@ var_1.print_name()
 
 del var_1
 ```
+# インスタンスメソッド、クラスメソッド、スタティックメソッド
+```python
+class Human:
+    class_name = 'Human'  # クラス変数
+
+    def __init__(self, name, age):  # コンストラクタ
+        self.name = name
+        self.age = age
+
+    def print_name_age(self):  # インスタンスメソッド
+        print('インスタンスメソッド実行')
+        print('name = {}, age = {}'.format(self.name, self.age))
+
+    @classmethod
+    def print_class_name(cls, msg):  # クラスメソッド
+        print('クラスメソッド実行')
+        print(cls.class_name)  # クラス変数
+        print(msg)
+
+    @staticmethod
+    def print_msg(msg):  # スタティックメソッド
+        print('スタティックメソッド実行')
+        print(msg)
+
+
+Human.print_class_name('こんにちは')  # クラスメソッドを実行する。インスタンス変数にはアクセスできない
+
+man = Human('櫻木', 18)  # インスタンス化
+man.print_name_age()  # インスタンスメソッドを実行する。
+
+# スタティックメソッドは実際はあまり使われないが、インスタンス変数やクラス変数を使わない場合は
+# スタティックメソッドにしておくと使わないことが明示的で良い
+man.print_msg('hello static')  # スタティックメソッド実行、インスタンスとクラスの両方から実行できる
+Human.print_msg('hello static')
+```
