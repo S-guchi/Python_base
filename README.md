@@ -1036,3 +1036,38 @@ print(instance_b.__class__.class_val)  # class val 2
 print(id(instance_a.__class__.class_val))  # 140216322939696
 print(id(instance_b.__class__.class_val))  # 140216322939696
 ```
+### コンストラクタ
+- クラスをインスタンス化させた時に最初に呼ばれる関数
+- __init__(self,)
+
+### デストラクタ
+- インスタンスを削除する際に呼ばれる関数
+- __del__(self,)
+- delでインスタンスが破棄されたタイミングか、プログラム終了時に破棄されたタイミングで実行される
+
+```python
+class SampleClass:
+
+    def __init__(self, msg, name=None):
+        print('コンストラクタが呼ばれました')
+        self.msg = msg
+        self.name = name
+
+    def __del__(self):
+        print('デストラクタが実行されました')
+        print('name = {}'.format(self.name))
+
+    def print_msg(self):
+        print(self.msg)
+
+    def print_name(self):
+        print(self.name)
+
+
+var_1 = SampleClass('hello', 'Jiro')
+
+var_1.print_msg()
+var_1.print_name()
+
+del var_1
+```
