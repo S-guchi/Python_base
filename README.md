@@ -1106,3 +1106,67 @@ man.print_name_age()  # インスタンスメソッドを実行する。
 man.print_msg('hello static')  # スタティックメソッド実行、インスタンスとクラスの両方から実行できる
 Human.print_msg('hello static')
 ```
+
+### 特殊メソッド
+#### インスタンスにアクセスする際に特定の処理を実行すると呼び出されるメソッド
+#### 基本的に__xxx__のようにアンダースコアで挟む
+
+```python
+
+class Human:
+    def __init__(self, name, age, phone_number):
+        self.name = name
+        self.age = age
+        self.phone_number = phone_number
+
+    # 文字列へ変換したとき呼ばれる
+    def __str__(self):
+        return self.name + ',' + str(self.age) + ',' + self.phone_number
+
+    # if で呼ばれる
+    def __eq__(self, other):
+        return (self.name == other.name) and (self.phone_number == other.phone_number)
+
+    # ハッシュ関数が呼ばれたとき、ハッシュ値を返す
+    def __hash__(self):
+        return hash(self.name + self.phone_number)
+
+    # ifで呼ばれる
+    def __bool__(self):
+        return True if self.age >= 20 else False
+
+    # lenが呼ばれたら
+    def __len__(self):
+        return len(self.name)
+
+
+man = Human('Taro', 20, '08022222222')
+man2 = Human('Taro', 18, '08022222222')
+man3 = Human('Jiro', 18, '09022222222')
+
+man_str = str(man)
+print(man)
+print(man == man2)
+print(hash('Taro'))  # 1100242030999097417
+print(hash('Jiro'))  # -3451925633406501098
+
+
+# 以下のようにセットを宣言すると、セットは重複は許さないので同じハッシュ値のものは一つになる
+# ハッシュ関数が呼ばれたときはハッシュ値を返すように__hash__としているが,中身がnameとphone_numberを組み合わせたものなので
+# 年齢が違くてもman2がセットに入らない
+set_men = {man, man2, man3}
+# Taro,20,08022222222
+# Jiro,18,09022222222
+for x in set_men:
+    print(x)
+
+# boolで20以下はfalseと返すのでman2はtrueとでない
+if man:
+    print('manはTrue')
+if man2:
+    print('man2はTrue')
+
+# 文字列の長さを返す
+print(len(man))
+
+```
