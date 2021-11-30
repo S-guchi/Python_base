@@ -1170,3 +1170,56 @@ if man2:
 print(len(man))
 
 ```
+
+### 継承
+#### class クラス名(継承先):と記述する
+#### 以下はExceptionクラスを継承している事になる
+```python
+
+class CharacterAlreadyExistException(Exception):
+    pass
+```
+- クラスを継承すると親クラスのプロパティやメソッドを子クラスで自由に扱えるようになる(self.xxxのように)
+
+- 子クラスでsuper().__init__(xxx)とすることで親クラスのinitを呼び出せる
+
+- 親クラスと同じ名前の関数を子クラスで定義することをオーバーライドといい、親クラスの関数に上書きすることになる
+
+- オーバーロードはクラス内で同じ名前のメソッドで引数の数が違うメソッドを複数定義することをいう
+```python
+
+
+
+class Person:  # 親クラス
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def greeting(self):
+        print('hello {}'.format(self.name))
+
+    def say_age(self):
+        print('{} year old'.format(self.age))
+
+
+class Employee(Person):  # Personの機能を継承
+    def __init__(self, name, age, number):
+        super().__init__(name, age)  # 親クラスのプロパティを初期化
+        self.number = number
+
+    def say_number(self):
+        print('my number is = {}'.format(self.number))
+
+    def greeting(self):  # オーバーライド
+        super().greeting()
+        print('I\m employee phone_number = {}'.format(self.number))
+
+    # def greeting(self,age): #オーバーロードとは引数や戻り値を親と変えること、ただPythonでは使えない（オーバーライドされてしまう）
+    #     print('オーバーロード')
+
+man = Employee('Tonegawa', 45, '0801111111')
+
+man.greeting()
+man.say_age()
+man.say_number()
+```
