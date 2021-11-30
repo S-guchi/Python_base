@@ -1283,3 +1283,29 @@ sample.print_new_name()
 # New Class hi
 sample.print_hi()
 ```
+
+### メタクラス
+#### 主にクラスの検証で使われる
+```python
+class MetaException(Exception):
+    pass
+
+
+class Meta1(type):
+
+    def __new__(metacls, name, bases, class_dict):
+        print('metacls = {}'.format(metacls))
+        print('name = {}'.format(name))
+        print('bases = {}'.format(bases))
+        print('class_dict = {}'.format(class_dict))
+        if 'my_var' not in class_dict.keys():  # myvarをClassに定義していないときはエラー（__main__.MetaException: my_varを定義してください）
+            raise MetaException('my_varを定義してください')
+        return super().__new__(metacls, name, bases, class_dict)
+
+
+class ClassA(metaclass=Meta1):  # これを実行するとmetaclassに定義したMeta1が呼ばれる。結果__new__が実行される
+    a = '123'
+    my_var = "aaa"
+    pass
+```
+<< >>シフト演算
