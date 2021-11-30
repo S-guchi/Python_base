@@ -1223,3 +1223,63 @@ man.greeting()
 man.say_age()
 man.say_number()
 ```
+### クラスの多重継承
+#### カンマで区切って複数クラスを指定
+```python
+class ClassA:
+    def __init__(self, name):
+        self.a_name = name
+
+    def print_a(self):
+        print('ClassAのメソッド実行')
+        print('a = {}'.format(self.a_name))
+
+    def print_hi(self):
+        print('A hi')
+
+
+class ClassB:
+
+    def __init__(self, name):
+        self.b_name = name
+
+    def print_b(self):
+        print('ClassBのメソッド実行')
+        print('b = {}'.format(self.b_name))
+
+    def print_hi(self):
+        print('B hi')
+
+# 多重継承
+
+
+class NewClass(ClassA, ClassB):
+    def __init__(self, a_name, b_name, name):
+        ClassA.__init__(self, a_name)  # 親クラスの初期化をするときは多重継承の場合はsuperではなくて、クラス名を指定する
+        ClassB.__init__(self, b_name)  # どっちのことかわからなくなるため
+        self.name = name
+
+    def print_new_name(self):
+        print('name = {}'.format(self.name))
+
+    def print_hi(self):
+        ClassA.print_hi(self)
+        ClassB.print_hi(self)
+        print('New Class hi')
+
+
+sample = NewClass('AName', 'BName', 'New Class Name')
+
+# ClassAのメソッド実行
+# a = AName
+sample.print_a()
+# ClassBのメソッド実行
+# b = BName
+sample.print_b()
+# name = New Class Name
+sample.print_new_name()
+# A hi
+# B hi
+# New Class hi
+sample.print_hi()
+```
