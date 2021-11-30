@@ -1308,4 +1308,3 @@ class ClassA(metaclass=Meta1):  # これを実行するとmetaclassに定義し�
     my_var = "aaa"
     pass
 ```
-<< >>シフト演算
