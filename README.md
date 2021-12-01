@@ -1310,3 +1310,31 @@ class ClassA(metaclass=Meta1):  # これを実行するとmetaclassに定義し�
     my_var = "aaa"
     pass
 ```
+
+### ポリモーフィズム
+#### サブクラスを複数作成しｍ同じメソッドを定義して呼び出す際にどのクラスか意識せずに呼び出すこと
+#### 実行されるまでどのクラスをインスタンス化させるかわからないような場合に使う
+```python
+from abc import abstractclassmethod, ABCMeta, abstractmethod
+
+
+class Human(metaclass=ABCMeta):  # 親クラス
+    def __init__(self, name):
+        self.name = name
+
+    @abstractmethod  # 親クラスでは処理を定義しないメソッド(pass)子クラスでは必ずオーバーライドする。オーバーライドしないと必ずエラーになる。
+    def say_somethig(self):
+        pass
+
+    def say_name(self):
+        print(self.name)
+
+
+class Woman(Human):
+    pass
+
+
+# class Womanには抽象メソッドのsay_somethigがないためエラーとなる
+human = Woman('Hanako')  # Can't instantiate abstract class Woman with abstract methods say_somethig
+
+```
