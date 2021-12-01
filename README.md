@@ -1405,3 +1405,46 @@ print(human.age)
 # 18
 
 ```
+
+### setter,getter その2 (こっちの方が一般的に使われいるらしい)
+#### メソッドの前に@property → getter
+#### メソッドの前に@メソッド名.setter → setter
+```python
+
+
+class Human:
+    def __init__(self, name, age):
+        self.__name = name
+        self.__age = age
+
+    @property
+    def name(self):
+        print('getter nameが呼ばれました')
+        return self.__name
+
+    @property
+    def age(self):
+        print('getter ageが呼ばれました')
+        return self.__age
+
+    @name.setter
+    def name(self, name):
+        print('setter nameが呼ばれました')
+        self.__name = name
+
+    @age.setter
+    def age(self, age):
+        print('setter ageが呼ばれました')
+        if age < 0:
+            print('0より大きい歳を指定ください')
+            return
+        self.__age = age
+
+
+human = Human('Koichi', 22)
+human.name = 'Makoto'  # setter nameが呼ばれました
+print(human.name)  # getter nameが呼ばれました Makoto
+human.age = -1  # 0より大きい歳を指定ください
+print(human.age)  # getter ageが呼ばれました 22
+
+```
