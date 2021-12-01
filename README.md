@@ -1355,7 +1355,7 @@ class Human:
 human = Human('taro', 15)
 
 
-# print(human.__age) #'Human' object has no attribute '__age'
+print(human.__age) #'Human' object has no attribute '__age'
 
 print(human._Human__age)  # _class__variableのようにすればアクセスできるが、実際に使うことは殆どない
 ```
