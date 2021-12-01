@@ -1338,3 +1338,24 @@ class Woman(Human):
 human = Woman('Hanako')  # Can't instantiate abstract class Woman with abstract methods say_somethig（抽象的なメソッドを持つ抽象クラスWomanをインスタンス化できない say_somethig）
 
 ```
+
+### Private変数
+#### Private変数はアンダースコア２つつけて定義する
+#### ただし、Pythonでは厳密なPrivateはなくて、外部からでもアクセスできる方法がある
+```python
+class Human:
+    __class_val = 'Human'
+
+    def __init__(self, name, age):
+        self.name = name
+        self.__age = age
+
+    
+
+human = Human('taro', 15)
+
+
+# print(human.__age) #'Human' object has no attribute '__age'
+
+print(human._Human__age)  # _class__variableのようにすればアクセスできるが、実際に使うことは殆どない
+```
