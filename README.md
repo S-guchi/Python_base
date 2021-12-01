@@ -1286,6 +1286,8 @@ sample.print_hi()
 
 ### メタクラス
 #### 主にクラスの検証で使われる
+#### 作成方法：typeを継承
+#### 指定方法:metaclass=
 ```python
 class MetaException(Exception):
     pass
