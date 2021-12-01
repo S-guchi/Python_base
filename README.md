@@ -1360,3 +1360,48 @@ print(human.__age) #'Human' object has no attribute '__age'
 
 print(human._Human__age)  # _class__variableのようにすればアクセスできるが、実際に使うことは殆どない
 ```
+### getter,setter その1
+#### property(get_variable,set_variable)を使うと、クラスのインスタンス変数を直接呼び出しているように書くことができる
+```python
+
+class Human:
+
+    def __init__(self, name, age):
+        self.__name = name
+        self.__age = age
+
+    def get_name(self):
+        print('getter name を呼び出しました')
+        return self.__name
+
+    def get_age(self):
+        print('getter age を呼び出しました')
+        return self.__age
+
+    def set_name(self, name):
+        print('setter nameを呼び出しました')
+        self.__name = name
+
+    def set_age(self, age):
+        print('setter ageを呼び出しました')
+        self.__age = age
+
+    name = property(get_name, set_name)  # nameを指定するとget_name,set_nameが呼び出される
+    age = property(get_age, set_age)
+
+    def print_msg(self):
+        print(self.name, self.age)
+
+
+human = Human('Taro', 15)
+human.name = 'Jiro'  # setter nameを呼び出しました
+human.age = 18  # setter ageを呼び出しました
+
+print(human.name)
+# getter name を呼び出しました
+# Jiro
+print(human.age)
+# getter age を呼び出しました
+# 18
+
+```
