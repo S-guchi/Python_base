@@ -1342,6 +1342,7 @@ human = Woman('Hanako')  # Can't instantiate abstract class Woman with abstract 
 ### Private変数
 #### Private変数はアンダースコア２つつけて定義する
 #### ただし、Pythonでは厳密なPrivateはなくて、外部からでもアクセスできる方法がある
+#### でもプライベート変数は直接アクセスせずにメソッドを通してアクセスすること
 ```python
 class Human:
     __class_val = 'Human'
