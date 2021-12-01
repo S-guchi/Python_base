@@ -1335,6 +1335,6 @@ class Woman(Human):
 
 
 # class Womanには抽象メソッドのsay_somethigがないためエラーとなる
-human = Woman('Hanako')  # Can't instantiate abstract class Woman with abstract methods say_somethig
+human = Woman('Hanako')  # Can't instantiate abstract class Woman with abstract methods say_somethig（抽象的なメソッドを持つ抽象クラスWomanをインスタンス化できない say_somethig）
 
 ```
