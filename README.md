@@ -1361,7 +1361,7 @@ print(human.__age) #'Human' object has no attribute '__age'
 print(human._Human__age)  # _class__variableのようにすればアクセスできるが、実際に使うことは殆どない
 ```
 ### getter,setter その1
-#### property(get_variable,set_variable)を使うと、クラスのインスタンス変数を直接呼び出しているように書くことができる
+#### property(get_variable,set_variable)を使うと、クラスのプライベート変数を直接呼び出しているように書くことができる
 ```python
 
 class Human:
