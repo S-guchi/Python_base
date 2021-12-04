@@ -1508,9 +1508,8 @@ with open(file_path, mode='a', encoding='utf-8', newline='\n') as f:
 ```
 
 ### with
-- 書き方
-    + with class名 as t:
-    + withの中の処理を実行する前に、withの後に指定したクラスの__init__と、__enter__がそれぞれ呼ばれ、処理終了後に__exit__メソッドが呼ばれる
++ with class名 as t:
++ withの中の処理を実行する前に、withの後に指定したクラスの__init__と、__enter__がそれぞれ呼ばれ、処理終了後に__exit__メソッドが呼ばれる
 ```python
 
 class WithTest:
