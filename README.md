@@ -1453,7 +1453,7 @@ print(human.age)  # getter ageが呼ばれました 22
 ```python
 file_path = 'resources/input.csv'
 
-f = open(file_path, mode='r', encoding='utf-8')
+f = open(file_path, mode='r', encoding='utf-8') #rは読み込みモード
 
 line = f.read()  # 全体を読み込む
 print(line)
