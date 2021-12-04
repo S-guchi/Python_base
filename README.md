@@ -1455,21 +1455,21 @@ file_path = 'resources/input.csv'
 
 f = open(file_path, mode='r', encoding='utf-8')
 
-# line = f.read()  # 全体を読み込む
-# print(line)
+line = f.read()  # 全体を読み込む
+print(line)
 # 1,2,3
 # a,b,c
 # A,B,C
 # あ、い、う
 
 
-# lines = f.readlines()  # 配列で読み込む
-# print(lines)  # ['1,2,3\n', 'a,b,c\n', 'A,B,C\n', 'あ、い、う']
+lines = f.readlines()  # 配列で読み込む
+print(lines)  # ['1,2,3\n', 'a,b,c\n', 'A,B,C\n', 'あ、い、う']
 
-# line = f.readline()  # 一行ずつ読み込む
-# while line:
-#     print(line.rstrip('\n'))
-#     line = f.readline()
+line = f.readline()  # 一行ずつ読み込む
+while line:
+    print(line.rstrip('\n'))
+    line = f.readline()
 
 # セイウチ演算子で一行にまとめる方法
 while (line := f.readline()):
