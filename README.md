@@ -1506,3 +1506,32 @@ with open(file_path, mode='a', encoding='utf-8', newline='\n') as f:
         f.write(','.join(x))  # カンマをつなげて書き込む
 
 ```
+
+### with
+- 書き方
+    + with class名 as t:
+    + withの中の処理を実行する前に、withの後に指定したクラスの__init__と、__enter__がそれぞれ呼ばれ、処理終了後に__exit__メソッドが呼ばれる
+```python
+
+class WithTest:
+    def __init__(self, file_name):
+        print('init called')
+        self.__file_name = file_name
+
+    def __enter__(self):
+        print('enter called')
+        self.__file = open(self.__file_name, mode='w', encoding='utf-8')
+        return self
+
+    def write(self, msg):
+        self.__file.write(msg)
+
+    def __exit__(self, exc_type, exc_val, traceback):  # exc_type, exc_val, tracebackはエラーが発生した時のハンドリング用の引数.__exit__を使用する場合は慣例的につける
+        print('exit called')
+        self.__file.close()
+
+
+with WithTest('output') as t:
+    print('withの中')
+    t.write('aaaaaa')
+```
