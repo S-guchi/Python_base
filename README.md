@@ -1534,3 +1534,51 @@ with WithTest('output') as t:
     print('withの中')
     t.write('aaaaaa')
 ```
+### パッケージ管理
+- 以下は、subファイルのsample_a関数をsaという変数に読み込む
+- from sub import sample_a as sa
+```python
+import sys 
+
+print(sys.path)　# ライブラリの読み取り先のパスを表示させる
+```
+
+#### subファイルを読み込む
+
+- sub
+```python
+VAR = 'sub'
+def sample_a():
+    print('sample_a関数を実行')
+
+
+class ClassA:
+    def print_a(self):
+        print('ClassAのprint_aを実行')
+
+if __name__ == '__main__':
+    print('subファイルをimport')
+```
+
+- main
+```python
+import sub
+
+sub.sample_a() #sample_a関数を実行
+
+class_a = sub.ClassA() 
+
+class_a.print_a() #ClassAのprint_aを実行
+
+print(sub.VAR) #sub
+```
+```python
+from sub import *  # *とすることでファイルの全ての内容を読み込むが、基本的にやらない方がいい。中身を把握してない状態でやると関数の上書きなどをやってしまう可能性ができてしまうため
+from sub import sample_a as sa, ClassA as ca  # 関数やクラスを直接指定してimportする
+
+sa()  # sample_a関数を実行
+
+ins = ca()
+ins.print_a()  # ClassAのprint_aを実行
+
+```
